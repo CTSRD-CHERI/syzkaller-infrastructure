@@ -1,0 +1,9 @@
+{
+  "source-root": "/fuzzing/cheri",
+  "cheribsd-morello-purecap": {
+    "kernel-config": "GENERIC-MORELLO-PURECAP-SYZKALLER-NODEBUG"
+  },
+  "cheribsd": {
+    "source-directory": "/fuzzing/cheribsd"
+  }
+}
