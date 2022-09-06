@@ -20,7 +20,7 @@ Build the neccesery targets:
 - `./cheribuild.py morello-syzkaller`
 
 
-## Making morellobox ready for fuzzing
+## Getting morellobox ready for fuzzing
 
 Make sure morellobox has a cheribsd version with kcov and coverage, for example the `GENERIC-MORELLO-PURECAP-SYZAKLLER` kernel config.
 
@@ -35,3 +35,14 @@ You can run syzkaller in cheribuild with the `./cheribuild.py run-morello-bareme
 - use the `--run-morello-baremetal-syzkaller/reboot-comamnd` flag to set the command that reboots the morellobox. 
 
 The included `run_syzkaller.sh` is a script that starts syzkaller, and saves stdout and stderr in a directory called `logs` inside the user's home directory. The variables set at the beggining are an example, you have to change it for your use case. For the reboot command, it runs `reboot_morello.sh` which is another script included. You have to modify that as well, so it uses correct ssh configuration.
+
+## Reproducing logs manually
+
+The official documentation:[reproducing_crashes](https://github.com/google/syzkaller/blob/master/docs/reproducing_crashes.md)
+
+The `upload_repro_files.sh` script uploads the files neccesery to reproduce logs (first change variables at the beggining of the file). The fist argument of the script should be the path to the log file, that you want to reproduce.
+
+To run a log, on the box execute: `sudo env GODEBUG=asyncpreemptoff=1 ./syz-execprog -executor=./syz-executor -debug=true log_name`
+
+
+
